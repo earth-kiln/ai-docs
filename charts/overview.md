@@ -54,3 +54,41 @@ To get consistent theming across light and dark modes, define color variables in
 ## Creating `chart.tsx` (Optional)
 
 If you want a convenient place to store helper components (e.g., `ChartContainer`, `ChartTooltip`, `ChartTooltipContent`, `ChartLegend`, `ChartLegendContent`), create a file named `chart.tsx` in your `components/ui` directory (or wherever you prefer). Copy and paste the relevant code from your chosen library or from the snippet provided by your scaffolding tool.
+
+```tsx
+"use client"
+import { AreaChart, Area, XAxis } from "recharts"
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+
+const data = [
+  { month: "Jan", sales: 100, users: 200 },
+  { month: "Feb", sales: 200, users: 300 },
+  { month: "Mar", sales: 150, users: 250 }
+]
+
+const config = {
+  sales: {
+    label: "Sales",
+    color: "hsl(var(--chart-1))"
+  },
+  users: {
+    label: "Users",
+    color: "hsl(var(--chart-2))"
+  }
+} satisfies ChartConfig
+
+export default function Chart() {
+  return (
+    <div className="h-[300px]">
+      <ChartContainer config={config}>
+        <AreaChart data={data}>
+          <XAxis dataKey="month" />
+          <ChartTooltip content={<ChartTooltipContent />} />
+          <Area dataKey="sales" stackId="stack" />
+          <Area dataKey="users" stackId="stack" />
+        </AreaChart>
+      </ChartContainer>
+    </div>
+  )
+}
+```
