@@ -1,29 +1,37 @@
-Overview
+# Guide 1: Introduction and Setup
 
-This guide covers the basics of installing and setting up Recharts along with helper components (e.g., ChartContainer, ChartTooltipContent, etc.). These helpers provide a polished starting point for building beautiful charts in your React application.
+## Overview
 
-Prerequisites
-	•	Basic familiarity with React
-	•	Tailwind CSS or a similar styling setup (optional but recommended)
-	•	Node.js environment
+This guide covers the basics of installing and setting up Recharts along with helper components (e.g., `ChartContainer`, `ChartTooltipContent`, etc.). These helpers provide a polished starting point for building beautiful charts in your React application.
 
-Installation
+## Prerequisites
 
-If you haven’t installed Recharts already, you can do so using your package manager of choice:
+- Basic familiarity with React
+- Tailwind CSS or a similar styling setup (optional but recommended)
+- Node.js environment
 
+## Installation
+
+If you haven’t installed [Recharts](https://recharts.org/) already, you can do so using your package manager of choice:
+
+```bash
 npm install recharts
+```
 
-Optional: If you’re using a starter kit that provides scaffolding (like shadcn), run:
+**Optional**: If you’re using a starter kit that provides scaffolding (like `shadcn`), run:
 
+```bash
 npx shadcn@latest add chart
+```
 
-	Note
-If you are using charts with React 19 or Next.js 15, please ensure you check any specific Recharts compatibility notes from their documentation or from your framework’s official migration guide.
+> **Note**  
+> If you are using charts with **React 19** or **Next.js 15**, please ensure you check any specific Recharts compatibility notes from their documentation or from your framework’s official migration guide.
 
-Adding Colors
+## Adding Colors
 
-To get consistent theming across light and dark modes, define color variables in your CSS. For example (in globals.css or an equivalent):
+To get consistent theming across light and dark modes, define color variables in your CSS. For example (in `globals.css` or an equivalent):
 
+```css
 @layer base {
   :root {
     --chart-1: 12 76% 61%;
@@ -41,7 +49,8 @@ To get consistent theming across light and dark modes, define color variables in
     --chart-5: 340 75% 55%;
   }
 }
+```
 
-Creating chart.tsx (Optional)
+## Creating `chart.tsx` (Optional)
 
-If you want a convenient place to store helper components (e.g., ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent), create a file named chart.tsx in your components/ui directory (or wherever you prefer). Copy and paste the relevant code from your chosen library or from the snippet provided by your scaffolding tool.
+If you want a convenient place to store helper components (e.g., `ChartContainer`, `ChartTooltip`, `ChartTooltipContent`, `ChartLegend`, `ChartLegendContent`), create a file named `chart.tsx` in your `components/ui` directory (or wherever you prefer). Copy and paste the relevant code from your chosen library or from the snippet provided by your scaffolding tool.
