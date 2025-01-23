@@ -1,0 +1,132 @@
+# Guide 3: Advanced Features (Theming, Tooltips, Legends, and Accessibility)
+
+## Theming
+
+### CSS Variables
+
+A recommended approach is to define color tokens in CSS variables for easy switching between light and dark modes:
+
+```css
+:root {
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  /* etc. */
+}
+
+.dark {
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  /* etc. */
+}
+```
+
+Then in your JavaScript/TypeScript:
+
+```tsx
+const chartConfig = {
+  desktop: {
+    label: 'Desktop',
+    color: 'hsl(var(--chart-1))',
+  },
+  mobile: {
+    label: 'Mobile',
+    color: 'hsl(var(--chart-2))',
+  },
+};
+```
+
+Using the color in a Recharts component:
+
+```tsx
+<Bar dataKey="desktop" fill="var(--color-desktop)" />
+```
+
+### Direct Color Values
+
+You can also hardcode hex, HSL, or other color formats:
+
+```tsx
+const chartConfig = {
+  desktop: {
+    label: 'Desktop',
+    color: '#2563eb',
+  },
+  mobile: {
+    label: 'Mobile',
+    color: 'hsl(220, 98%, 61%)',
+  },
+};
+```
+
+## Tooltip
+
+A chart tooltip typically displays:
+
+- A label (e.g., month, category)
+- A name (e.g., data key, like “Desktop” or “Mobile”)
+- A color indicator
+- A value
+
+If you have custom tooltip components, you might use them as follows:
+
+```tsx
+import { ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+
+<ChartTooltip content={<ChartTooltipContent />} />;
+```
+
+### Tooltip Props
+
+Below is an example of how custom tooltip content might be configured:
+
+| Prop            | Type                       | Description                                  |
+| --------------- | -------------------------- | -------------------------------------------- |
+| `labelKey`      | `string`                   | Which config or data key to use for the label. |
+| `nameKey`       | `string`                   | Which config or data key to use for the name.  |
+| `indicator`     | `'dot' | 'line' | 'dashed'` | The indicator style for the tooltip.           |
+| `hideLabel`     | `boolean`                  | Whether to hide the main label.                |
+| `hideIndicator` | `boolean`                  | Whether to hide the color indicator.           |
+
+**Example**:
+
+```tsx
+<ChartTooltip
+  content={
+    <ChartTooltipContent
+      labelKey="visitors"
+      nameKey="browser"
+      indicator="dot"
+      hideLabel={false}
+      hideIndicator={false}
+    />
+  }
+/>
+```
+
+## Legend
+
+To add a custom legend, you might do something like:
+
+```tsx
+import { ChartLegend, ChartLegendContent } from '@/components/ui/chart';
+
+<ChartLegend content={<ChartLegendContent />} />;
+```
+
+If you need to customize the legend labels, you can specify a `nameKey`, similar to how tooltips are customized:
+
+```tsx
+<ChartLegend content={<ChartLegendContent nameKey="browser" />} />;
+```
+
+## Accessibility
+
+Set the `accessibilityLayer` prop to enable basic keyboard and screen reader support:
+
+```tsx
+<BarChart accessibilityLayer>
+  {/* your chart components */}
+</BarChart>
+```
+
+This ensures users of assistive technology have a better experience interacting with and consuming data from your charts.
